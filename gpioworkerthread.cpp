@@ -4,6 +4,9 @@
 
 
 #define threadSleepTime 30
+#define HIGHT 1
+#define LOW 0
+
 
 void GPIOWorkerThread::setState(GPIOWorkerThread::State state)
 {
@@ -22,7 +25,7 @@ void GPIOWorkerThread::run()
         case NoState:
 
             msleep(1000);
-            RaspiGPIOHandler::instance()->tooglePin(0);
+           // RaspiGPIOHandler::instance()->tooglePin(0);
             break;
 
         case GateClosed:

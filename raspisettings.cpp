@@ -18,6 +18,14 @@ QVariant RaspiSettings::get(Key key)
     return self.settings.value(keyString,self.defaultSettings(key));
 }
 
+void RaspiSettings::set(RaspiSettings::Key key, QVariant value)
+{
+     RaspiSettings &self = instance();
+     QMetaEnum metaEnum = QMetaEnum::fromType<RaspiSettings::Key>();
+     QString keyString=metaEnum.valueToKey(key);
+     self.settings.setValue(keyString,value);
+}
+
 QVariant RaspiSettings::defaultSettings(Key key)
 {
     switch (key) {
@@ -53,6 +61,6 @@ QVariant RaspiSettings::defaultSettings(Key key)
 }
 
 RaspiSettings::RaspiSettings(){
-
+    //settings=QSettings("kassy.ru","raspiSKD");
 }
 

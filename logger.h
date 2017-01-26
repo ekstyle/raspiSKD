@@ -10,10 +10,10 @@ class Logger : public QObject
     Q_OBJECT
 public:
     enum LogLevel{
-        Debug,
-        Warning,
         Error,
-        Critical
+        Warning,
+        All,
+        Debug
     };
     Q_ENUM(LogLevel)
     static Logger* instance(); //singleton pattern
@@ -22,6 +22,7 @@ private:
     static Logger* m_instance;
     QFile *file;
     bool echo;
+    void writeToLog(const QString &msg, LogLevel lvl);
 
 signals:
 

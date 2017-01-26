@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QNetworkAccessManager>
 #include "gpioworkerthread.h"
+#include "eventhandler.h"
 
 class GPIOControl : public QObject
 {
@@ -15,8 +16,11 @@ private:
     void createWorkerThread();
     bool barcodeVerify(QString barcode);
     void readInput();
+    void init_EventHandlers();
+    bool authorize(const QString &barcode);
     GPIOWorkerThread* gpioThread;
     QString lastbarcode;
+    QVector<EventHandler*> vecEV;
 
 signals:
 

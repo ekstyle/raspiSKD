@@ -22,6 +22,7 @@ public:
     Q_ENUM(Key)
 
     static QVariant get(Key key);
+    static void set(Key key,QVariant value);
 
 private:
     RaspiSettings();
@@ -35,4 +36,10 @@ private:
     QVariant defaultSettings (Key key);
 };
 
+inline QVariant get_set (RaspiSettings::Key key){
+    return RaspiSettings::get(key);
+}
+inline void get_set (RaspiSettings::Key key, QVariant value){
+    return RaspiSettings::set(key, value);
+}
 #endif

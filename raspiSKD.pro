@@ -14,7 +14,8 @@ SOURCES += main.cpp \
     gpioworkerthread.cpp \
     raspisettings.cpp \
     apianswer.cpp \
-    logger.cpp
+    logger.cpp \
+    eventhandler.cpp
 
 HEADERS += \
     raspigpiohandler.h \
@@ -22,4 +23,5 @@ HEADERS += \
     gpioworkerthread.h \
     raspisettings.h \
     apianswer.h \
-    logger.h
+    logger.h \
+    eventhandler.h
