@@ -13,7 +13,6 @@ public:
         Raw
     };
     APIAnswer(const QByteArray &data,const Type type=Json);
-
     bool isCorrect;
     QString errorString;
 

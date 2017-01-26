@@ -17,12 +17,12 @@ int main (int argc, char *argv[])
     QSystemSemaphore semaphore("raspiSKD1", 1);
     semaphore.acquire();
 #ifndef Q_OS_WIN32
-    QSharedMemory nix_shared ("raspiSKD2");
+    QSharedMemory nix_shared ("<raspiSKD2>");
     if(nix_shared.attach()){
         nix_shared.detach();
     }
 #endif
-    QSharedMemory sharedMemory("raspiSKD2");
+    QSharedMemory sharedMemory("<raspiSKD2>");
     bool is_running;
     if (sharedMemory.attach()){
         is_running = true;
