@@ -12,17 +12,18 @@ int main (int argc, char *argv[])
     QCoreApplication::setOrganizationName(ORGANIZATION_NAME);
     QCoreApplication::setOrganizationDomain(ORGANIZATION_DOMAIN);
     QCoreApplication::setApplicationName(APPLICATION_NAME);
+    QCoreApplication::setApplicationVersion(APP_VERSION);
     QCoreApplication a(argc,argv);
 
-    QSystemSemaphore semaphore("raspiSKD1", 1);
+    QSystemSemaphore semaphore(a.applicationName()+a.organizationName(), 1);
     semaphore.acquire();
 #ifndef Q_OS_WIN32
-    QSharedMemory nix_shared ("<raspiSKD2>");
+    QSharedMemory nix_shared (a.applicationName());
     if(nix_shared.attach()){
         nix_shared.detach();
     }
 #endif
-    QSharedMemory sharedMemory("<raspiSKD2>");
+    QSharedMemory sharedMemory(a.applicationName());
     bool is_running;
     if (sharedMemory.attach()){
         is_running = true;
@@ -32,7 +33,7 @@ int main (int argc, char *argv[])
     }
     semaphore.release();
     if(is_running){
-        printf("Already running\n");
+        printf("Already running %s %s\n",a.applicationName().toLatin1().data(),a.applicationVersion().toLatin1().data());
         return 1;
     }
    GPIOControl* control=new GPIOControl();

@@ -3,7 +3,8 @@ QT       -= gui
 TARGET = raspiSKD
 CONFIG   += console static c++11
 CONFIG   -= app_bundle
-
+VERSION = 0.0.1
+DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 TEMPLATE = app
 
 linux: LIBS +=-lwiringPi
